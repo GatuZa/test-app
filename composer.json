@@ -1,0 +1,20 @@
+{
+  "name": "andrushchenko/test-app",
+  "description": "Andrushchenko Test Application",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+	{
+	  "name":  "Andrushchenko Dmitry",
+	  "email": "dmitriy.andrushchenko@miritec.com"
+	}
+  ],
+  "require": {
+	"php": ">=5.4",
+	"yiisoft/yii": "1.1.*",
+    "yiiext/migrate-command": "dev-master"
+  },
+  "config":{
+    "vendor-dir": "protected/vendor"
+  }
+}
