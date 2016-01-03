@@ -58,7 +58,7 @@ abstract class BaseRole extends GxActiveRecord{
 	{
 		return array(
 			array('varName', 'required'),
-			array('varName', 'length', 'max'=>30),
+			array('varName', 'length', 'max'=>50),
 			array('intRoleID, varName', 'safe', 'on'=>'search'),
 		);
 	}

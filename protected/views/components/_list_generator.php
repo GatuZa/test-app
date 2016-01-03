@@ -218,7 +218,7 @@ if ($actions !== false)
 				'imageUrl' => false,
 				'url' => 'Yii::app()->createUrl("' . Yii::app()->controller->id . '/delete", array("id" => $data->' . $model->tableSchema->primaryKey . '));',
 				'options' => array('class' => 'btn btn-danger btn-xs delete', 'title' => 'Delete'),
-				'visible' => '$data->' . $model->tableSchema->primaryKey . ' != Yii::app()->user->id'
+				'visible' => '!($data->' . $model->tableSchema->primaryKey . ' == Yii::app()->user->id && ' . $model->tableSchema->name . '== "user")'
 			),
 			'custom' => $custom_action
 		)

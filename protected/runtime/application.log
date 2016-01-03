@@ -3412,3 +3412,386 @@ Stack trace:
 REQUEST_URI=/user/edit/
 HTTP_REFERER=http://test-app.com/user/
 ---
+2016/01/03 16:59:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\OpenServer\domains\test-app1.com\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://test-app1.com/login
+---
+2016/01/03 17:16:07 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test_app.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2016/01/03 17:17:24 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test_app.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2016/01/03 17:17:26 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[HY000]: General error: 1215 Cannot add foreign key constraint. The SQL statement executed was: CREATE TABLE `user` (
+	`intUserID` INT(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`varName` CHAR(20) NOT NULL,
+	`varPassword` CHAR(40) NULL DEFAULT NULL,
+	`intRoleID` TINYINT(1) UNSIGNED NOT NULL,
+	`isActive` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
+	PRIMARY KEY (`intUserID`),
+	UNIQUE INDEX `varName` (`varName`),
+	INDEX `FK_user_role` (`intRoleID`),
+	INDEX `isActive` (`isActive`),
+	CONSTRAINT `FK_user_role` FOREIGN KEY (`intRoleID`) REFERENCES `role` (`intRoleID`) ON UPDATE CASCADE
+).
+2016/01/03 17:17:26 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1215 Cannot add foreign key constraint. The SQL statement executed was: CREATE TABLE `user` (
+	`intUserID` INT(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`varName` CHAR(20) NOT NULL,
+	`varPassword` CHAR(40) NULL DEFAULT NULL,
+	`intRoleID` TINYINT(1) UNSIGNED NOT NULL,
+	`isActive` TINYINT(1) UNSIGNED NOT NULL DEFAULT 1,
+	PRIMARY KEY (`intUserID`),
+	UNIQUE INDEX `varName` (`varName`),
+	INDEX `FK_user_role` (`intRoleID`),
+	INDEX `isActive` (`isActive`),
+	CONSTRAINT `FK_user_role` FOREIGN KEY (`intRoleID`) REFERENCES `role` (`intRoleID`) ON UPDATE CASCADE
+)' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php(1352): CDbCommand->execute()
+#1 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbMigration.php(250): CDbCommand->createTable('user', Array, NULL)
+#2 C:\OpenServer\domains\test-app1.com\protected\migrations\m160103_140423_create_user_table.php(21): CDbMigration->createTable('user', Array)
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(415): m160103_140423_create_user_table->up()
+#4 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(109): MigrateCommand->migrateUp('m160103_140423_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CConsoleApplication->processRequest()
+#10 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\yiic.php(33): CApplication->run()
+#11 C:\OpenServer\domains\test-app1.com\protected\yiic.php(7): require_once('C:\\OpenServer\\d...')
+#12 C:\OpenServer\domains\test-app1.com\protected\yiic(4): require_once('C:\\OpenServer\\d...')
+#13 {main}
+---
+2016/01/03 18:14:00 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test_app.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2016/01/03 18:14:02 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column '0' in 'field list'. The SQL statement executed was: INSERT INTO `role` (`0`, `1`) VALUES (:0, :1).
+2016/01/03 18:14:02 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column '0' in 'field list'. The SQL statement executed was: INSERT INTO `role` (`0`, `1`) VALUES (:0, :1)' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php(1278): CDbCommand->execute(Array)
+#1 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbMigration.php(178): CDbCommand->insert('role', Array)
+#2 C:\OpenServer\domains\test-app1.com\protected\migrations\m160103_142734_set_up_role_data.php(10): CDbMigration->insert('role', Array)
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(415): m160103_142734_set_up_role_data->up()
+#4 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(109): MigrateCommand->migrateUp('m160103_142734_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CConsoleApplication->processRequest()
+#10 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\yiic.php(33): CApplication->run()
+#11 C:\OpenServer\domains\test-app1.com\protected\yiic.php(7): require_once('C:\\OpenServer\\d...')
+#12 C:\OpenServer\domains\test-app1.com\protected\yiic(4): require_once('C:\\OpenServer\\d...')
+#13 {main}
+---
+2016/01/03 18:15:36 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test_app.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2016/01/03 18:15:37 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column '0' in 'field list'. The SQL statement executed was: INSERT INTO `role` (`0`, `1`) VALUES (:0, :1).
+2016/01/03 18:15:37 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column '0' in 'field list'. The SQL statement executed was: INSERT INTO `role` (`0`, `1`) VALUES (:0, :1)' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php(1278): CDbCommand->execute(Array)
+#1 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbMigration.php(178): CDbCommand->insert('role', Array)
+#2 C:\OpenServer\domains\test-app1.com\protected\migrations\m160103_142734_set_up_role_data.php(10): CDbMigration->insert('role', Array)
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(415): m160103_142734_set_up_role_data->up()
+#4 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(109): MigrateCommand->migrateUp('m160103_142734_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CConsoleApplication->processRequest()
+#10 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\yiic.php(33): CApplication->run()
+#11 C:\OpenServer\domains\test-app1.com\protected\yiic.php(7): require_once('C:\\OpenServer\\d...')
+#12 C:\OpenServer\domains\test-app1.com\protected\yiic(4): require_once('C:\\OpenServer\\d...')
+#13 {main}
+---
+2016/01/03 18:16:53 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1217 Cannot delete or update a parent row: a foreign key constraint fails. The SQL statement executed was: DROP TABLE `role`.
+2016/01/03 18:16:53 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1217 Cannot delete or update a parent row: a foreign key constraint fails. The SQL statement executed was: DROP TABLE `role`' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php(1375): CDbCommand->execute()
+#1 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbMigration.php(275): CDbCommand->dropTable('role')
+#2 C:\OpenServer\domains\test-app1.com\protected\migrations\m160103_142529_create_role_table.php(16): CDbMigration->dropTable('role')
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(440): m160103_142529_create_role_table->down()
+#4 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(145): MigrateCommand->migrateDown('m160103_142529_...')
+#5 [internal function]: MigrateCommand->actionDown(Array)
+#6 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CConsoleApplication->processRequest()
+#10 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\yiic.php(33): CApplication->run()
+#11 C:\OpenServer\domains\test-app1.com\protected\yiic.php(7): require_once('C:\\OpenServer\\d...')
+#12 C:\OpenServer\domains\test-app1.com\protected\yiic(4): require_once('C:\\OpenServer\\d...')
+#13 {main}
+---
+2016/01/03 18:19:15 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1217 Cannot delete or update a parent row: a foreign key constraint fails. The SQL statement executed was: DROP TABLE `role`.
+2016/01/03 18:19:15 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1217 Cannot delete or update a parent row: a foreign key constraint fails. The SQL statement executed was: DROP TABLE `role`' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php(1375): CDbCommand->execute()
+#1 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbMigration.php(275): CDbCommand->dropTable('role')
+#2 C:\OpenServer\domains\test-app1.com\protected\migrations\m160103_142529_create_role_table.php(16): CDbMigration->dropTable('role')
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(440): m160103_142529_create_role_table->down()
+#4 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(145): MigrateCommand->migrateDown('m160103_142529_...')
+#5 [internal function]: MigrateCommand->actionDown(Array)
+#6 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CConsoleApplication->processRequest()
+#10 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\yiic.php(33): CApplication->run()
+#11 C:\OpenServer\domains\test-app1.com\protected\yiic.php(7): require_once('C:\\OpenServer\\d...')
+#12 C:\OpenServer\domains\test-app1.com\protected\yiic(4): require_once('C:\\OpenServer\\d...')
+#13 {main}
+---
+2016/01/03 18:21:02 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test_app.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2016/01/03 18:21:04 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column '0' in 'field list'. The SQL statement executed was: INSERT INTO `role` (`0`, `1`) VALUES (:0, :1).
+2016/01/03 18:21:04 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column '0' in 'field list'. The SQL statement executed was: INSERT INTO `role` (`0`, `1`) VALUES (:0, :1)' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php(1278): CDbCommand->execute(Array)
+#1 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbMigration.php(178): CDbCommand->insert('role', Array)
+#2 C:\OpenServer\domains\test-app1.com\protected\migrations\m160103_142734_set_up_role_data.php(10): CDbMigration->insert('role', Array)
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(415): m160103_142734_set_up_role_data->up()
+#4 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(109): MigrateCommand->migrateUp('m160103_142734_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CConsoleApplication->processRequest()
+#10 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\yiic.php(33): CApplication->run()
+#11 C:\OpenServer\domains\test-app1.com\protected\yiic.php(7): require_once('C:\\OpenServer\\d...')
+#12 C:\OpenServer\domains\test-app1.com\protected\yiic(4): require_once('C:\\OpenServer\\d...')
+#13 {main}
+---
+2016/01/03 18:23:56 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test_app.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2016/01/03 18:24:31 [error] [exception.CException] exception 'CException' with message 'Property "Setting.intSettingID" is not defined.' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('intSettingID')
+#1 C:\OpenServer\domains\test-app1.com\protected\models\_base\BaseSetting.php(104): CActiveRecord->__get('intSettingID')
+#2 C:\OpenServer\domains\test-app1.com\protected\views\components\_list_generator.php(51): BaseSetting->search('search')
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(126): require('C:\\OpenServer\\d...')
+#4 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\OpenServer\\d...', Array, true)
+#5 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\OpenServer\\d...', Array, true)
+#6 C:\OpenServer\domains\test-app1.com\protected\views\setting\index.php(17): CController->renderPartial('../components/_...', Array)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(126): require('C:\\OpenServer\\d...')
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\OpenServer\\d...', Array, true)
+#9 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\OpenServer\\d...', Array, true)
+#10 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#11 C:\OpenServer\domains\test-app1.com\protected\components\ActionController.php(80): CController->render('index', Array)
+#12 [internal function]: ActionController->actionIndex('search')
+#13 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(SettingController), Array)
+#14 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(SettingController), Object(ReflectionMethod), Array)
+#15 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#17 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#18 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#19 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#20 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#21 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(291): CFilterChain->run()
+#22 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CWebApplication.php(282): CController->run('')
+#24 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('setting')
+#25 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#26 C:\OpenServer\domains\test-app1.com\index.php(13): CApplication->run()
+#27 {main}
+REQUEST_URI=/setting/
+HTTP_REFERER=http://test-app1.com/user/
+---
+2016/01/03 18:25:46 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1072 Key column 'intRoleID' doesn't exist in table. The SQL statement executed was: CREATE TABLE `setting` (
+	`intSettingID` TINYINT(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`varName` VARCHAR(50) NOT NULL,
+	PRIMARY KEY (`intRoleID`)
+).
+2016/01/03 18:25:46 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1072 Key column 'intRoleID' doesn't exist in table. The SQL statement executed was: CREATE TABLE `setting` (
+	`intSettingID` TINYINT(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`varName` VARCHAR(50) NOT NULL,
+	PRIMARY KEY (`intRoleID`)
+)' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php(1352): CDbCommand->execute()
+#1 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbMigration.php(250): CDbCommand->createTable('setting', Array, NULL)
+#2 C:\OpenServer\domains\test-app1.com\protected\migrations\m160103_143721_create_setting_table.php(11): CDbMigration->createTable('setting', Array)
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(415): m160103_143721_create_setting_table->up()
+#4 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(109): MigrateCommand->migrateUp('m160103_143721_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CConsoleApplication->processRequest()
+#10 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\yiic.php(33): CApplication->run()
+#11 C:\OpenServer\domains\test-app1.com\protected\yiic.php(7): require_once('C:\\OpenServer\\d...')
+#12 C:\OpenServer\domains\test-app1.com\protected\yiic(4): require_once('C:\\OpenServer\\d...')
+#13 {main}
+---
+2016/01/03 18:26:25 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'setting' already exists. The SQL statement executed was: CREATE TABLE `setting` (
+	`intSettingID` TINYINT(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`varName` VARCHAR(50) NOT NULL,
+	PRIMARY KEY (`intSettingID`)
+).
+2016/01/03 18:26:25 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'setting' already exists. The SQL statement executed was: CREATE TABLE `setting` (
+	`intSettingID` TINYINT(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`varName` VARCHAR(50) NOT NULL,
+	PRIMARY KEY (`intSettingID`)
+)' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php(1352): CDbCommand->execute()
+#1 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbMigration.php(250): CDbCommand->createTable('setting', Array, NULL)
+#2 C:\OpenServer\domains\test-app1.com\protected\migrations\m160103_143721_create_setting_table.php(11): CDbMigration->createTable('setting', Array)
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(415): m160103_143721_create_setting_table->up()
+#4 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(109): MigrateCommand->migrateUp('m160103_143721_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CConsoleApplication->processRequest()
+#10 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\yiic.php(33): CApplication->run()
+#11 C:\OpenServer\domains\test-app1.com\protected\yiic.php(7): require_once('C:\\OpenServer\\d...')
+#12 C:\OpenServer\domains\test-app1.com\protected\yiic(4): require_once('C:\\OpenServer\\d...')
+#13 {main}
+---
+2016/01/03 18:26:57 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'setting' already exists. The SQL statement executed was: CREATE TABLE `setting` (
+	`intSettingID` TINYINT(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`varName` VARCHAR(50) NOT NULL,
+	PRIMARY KEY (`intSettingID`)
+).
+2016/01/03 18:26:57 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S01]: Base table or view already exists: 1050 Table 'setting' already exists. The SQL statement executed was: CREATE TABLE `setting` (
+	`intSettingID` TINYINT(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`varName` VARCHAR(50) NOT NULL,
+	PRIMARY KEY (`intSettingID`)
+)' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbCommand.php(1352): CDbCommand->execute()
+#1 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\CDbMigration.php(250): CDbCommand->createTable('setting', Array, NULL)
+#2 C:\OpenServer\domains\test-app1.com\protected\migrations\m160103_143721_create_setting_table.php(11): CDbMigration->createTable('setting', Array)
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(415): m160103_143721_create_setting_table->up()
+#4 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\cli\commands\MigrateCommand.php(109): MigrateCommand->migrateUp('m160103_143721_...')
+#5 [internal function]: MigrateCommand->actionUp(Array)
+#6 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleCommandRunner.php(71): CConsoleCommand->run(Array)
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#9 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CConsoleApplication->processRequest()
+#10 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\yiic.php(33): CApplication->run()
+#11 C:\OpenServer\domains\test-app1.com\protected\yiic.php(7): require_once('C:\\OpenServer\\d...')
+#12 C:\OpenServer\domains\test-app1.com\protected\yiic(4): require_once('C:\\OpenServer\\d...')
+#13 {main}
+---
+2016/01/03 18:27:57 [error] [exception.CException] exception 'CException' with message 'Property "Setting.varValue" is not defined.' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\db\ar\CActiveRecord.php(145): CComponent->__get('varValue')
+#1 C:\OpenServer\domains\test-app1.com\protected\models\_base\BaseSetting.php(106): CActiveRecord->__get('varValue')
+#2 C:\OpenServer\domains\test-app1.com\protected\views\components\_list_generator.php(51): BaseSetting->search('search')
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(126): require('C:\\OpenServer\\d...')
+#4 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\OpenServer\\d...', Array, true)
+#5 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\OpenServer\\d...', Array, true)
+#6 C:\OpenServer\domains\test-app1.com\protected\views\setting\index.php(17): CController->renderPartial('../components/_...', Array)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(126): require('C:\\OpenServer\\d...')
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\OpenServer\\d...', Array, true)
+#9 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\OpenServer\\d...', Array, true)
+#10 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#11 C:\OpenServer\domains\test-app1.com\protected\components\ActionController.php(80): CController->render('index', Array)
+#12 [internal function]: ActionController->actionIndex('search')
+#13 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(SettingController), Array)
+#14 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(SettingController), Object(ReflectionMethod), Array)
+#15 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#17 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#18 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#19 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#20 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#21 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(291): CFilterChain->run()
+#22 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#23 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CWebApplication.php(282): CController->run('')
+#24 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('setting')
+#25 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#26 C:\OpenServer\domains\test-app1.com\index.php(13): CApplication->run()
+#27 {main}
+REQUEST_URI=/setting/
+HTTP_REFERER=http://test-app1.com/user/
+---
+2016/01/03 18:35:18 [error] [exception.CException] exception 'CException' with message 'Property "CMysqlTableSchema.tableName" is not defined.' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\views\components\_list_generator.php(221): CComponent->__get('tableName')
+#1 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(126): require('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\OpenServer\\d...', Array, true)
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\OpenServer\\d...', Array, true)
+#4 C:\OpenServer\domains\test-app1.com\protected\views\setting\index.php(17): CController->renderPartial('../components/_...', Array)
+#5 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(126): require('C:\\OpenServer\\d...')
+#6 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\OpenServer\\d...', Array, true)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\OpenServer\\d...', Array, true)
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#9 C:\OpenServer\domains\test-app1.com\protected\components\ActionController.php(80): CController->render('index', Array)
+#10 [internal function]: ActionController->actionIndex('search')
+#11 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(SettingController), Array)
+#12 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(SettingController), Object(ReflectionMethod), Array)
+#13 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CWebApplication.php(282): CController->run('')
+#22 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('setting')
+#23 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#24 C:\OpenServer\domains\test-app1.com\index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/setting/
+HTTP_REFERER=http://test-app1.com/setting/edit/2
+---
+2016/01/03 18:35:25 [error] [exception.CException] exception 'CException' with message 'CMysqlTableSchema and its behaviors do not have a method or closure named "tableName".' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\views\components\_list_generator.php(221): CComponent->__call('tableName', Array)
+#1 C:\OpenServer\domains\test-app1.com\protected\views\components\_list_generator.php(221): CMysqlTableSchema->tableName()
+#2 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(126): require('C:\\OpenServer\\d...')
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\OpenServer\\d...', Array, true)
+#4 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\OpenServer\\d...', Array, true)
+#5 C:\OpenServer\domains\test-app1.com\protected\views\setting\index.php(17): CController->renderPartial('../components/_...', Array)
+#6 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(126): require('C:\\OpenServer\\d...')
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\OpenServer\\d...', Array, true)
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\OpenServer\\d...', Array, true)
+#9 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#10 C:\OpenServer\domains\test-app1.com\protected\components\ActionController.php(80): CController->render('index', Array)
+#11 [internal function]: ActionController->actionIndex('search')
+#12 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(SettingController), Array)
+#13 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(SettingController), Object(ReflectionMethod), Array)
+#14 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#15 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#16 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#17 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#18 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#19 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#20 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(291): CFilterChain->run()
+#21 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CWebApplication.php(282): CController->run('')
+#23 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('setting')
+#24 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#25 C:\OpenServer\domains\test-app1.com\index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/setting/
+HTTP_REFERER=http://test-app1.com/setting/edit/2
+---
+2016/01/03 18:35:58 [error] [exception.CException] exception 'CException' with message 'Property "CMysqlTableSchema.tableName" is not defined.' in C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 C:\OpenServer\domains\test-app1.com\protected\views\components\_list_generator.php(221): CComponent->__get('tableName')
+#1 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(126): require('C:\\OpenServer\\d...')
+#2 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\OpenServer\\d...', Array, true)
+#3 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\OpenServer\\d...', Array, true)
+#4 C:\OpenServer\domains\test-app1.com\protected\views\setting\index.php(17): CController->renderPartial('../components/_...', Array)
+#5 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(126): require('C:\\OpenServer\\d...')
+#6 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\OpenServer\\d...', Array, true)
+#7 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\OpenServer\\d...', Array, true)
+#8 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(782): CController->renderPartial('index', Array, true)
+#9 C:\OpenServer\domains\test-app1.com\protected\components\ActionController.php(80): CController->render('index', Array)
+#10 [internal function]: ActionController->actionIndex('search')
+#11 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\actions\CAction.php(109): ReflectionMethod->invokeArgs(Object(SettingController), Array)
+#12 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(SettingController), Object(ReflectionMethod), Array)
+#13 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#14 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#15 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#16 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#17 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#18 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#19 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(291): CFilterChain->run()
+#20 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CWebApplication.php(282): CController->run('')
+#22 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('setting')
+#23 C:\OpenServer\domains\test-app1.com\protected\vendor\yiisoft\yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#24 C:\OpenServer\domains\test-app1.com\index.php(13): CApplication->run()
+#25 {main}
+REQUEST_URI=/setting/
+HTTP_REFERER=http://test-app1.com/setting/edit/2
+---
