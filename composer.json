@@ -14,7 +14,18 @@
 	"yiisoft/yii": "1.1.*",
     "yiiext/migrate-command": "dev-master"
   },
+  "require-dev": {
+    "phpunit/phpunit": "3.7.19",
+    "phpunit/phpunit-story": "1.0.2",
+    "phpunit/phpunit-selenium": "1.2.12",
+    "phpunit/dbunit": "1.2.3",
+    "netwing/selenium-server-standalone": "2.46"
+  },
+  "autoload": {
+    "psr-0": {"": "src"}
+  },
   "config":{
-    "vendor-dir": "protected/vendor"
+    "vendor-dir": "protected/vendor",
+    "bin-dir": "bin/"
   }
 }

@@ -1,13 +1,18 @@
-<phpunit bootstrap="bootstrap.php"
-		colors="false"
-		convertErrorsToExceptions="true"
-		convertNoticesToExceptions="true"
-		convertWarningsToExceptions="true"
-		stopOnFailure="false">
+<phpunit
+
+	bootstrap="bootstrap.php"
+	colors="false"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	stopOnFailure="false">
+
+	<php>
+		<ini name="display_errors" value="true"/>
+	</php>
 
 	<selenium>
-		<browser name="Internet Explorer" browser="*iexplore" />
-		<browser name="Firefox" browser="*firefox" />
+		<browser name="Firefox" browser="*firefox" host="127.0.0.1" port="4444" timeout="30000" />
 	</selenium>
 
 </phpunit>

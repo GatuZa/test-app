@@ -3,5 +3,3 @@ composer.phar
 vendor
 assets/*
 !assets/README.txt
-/protected/runtime/*
-!/protected/runtime/README.txt
