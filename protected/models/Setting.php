@@ -28,4 +28,18 @@ class Setting extends BaseSetting
 			'varValue' => Yii::t('app', 'Value')
 		];
 	}
+
+	/**
+	 * @return array
+	 */
+	public function rules()
+	{
+		return [
+			['varName, varValue', 'required'],
+			['varName', 'length', 'max' => 30],
+			['varName', 'unique'],
+			['varValue', 'length', 'max' => 1000],
+			['intSettingID, varName, varValue', 'safe', 'on' => 'search']
+		];
+	}
 }

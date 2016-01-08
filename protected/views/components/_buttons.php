@@ -41,7 +41,8 @@ if (isset($buttons) && !Yii::app()->request->isAjaxRequest):
 									break;
 							}
 
-							printf('<a href="%1$s/%2$s" id="action_%2$s" class="%3$s"><i class="%4$s"></i> %5$s</a>', Yii::app()->controller->id, $link, $class, $icon, $label);
+							$url = Yii::app()->createUrl(Yii::app()->controller->id . '/' . $link);
+							printf('<a href="%1$s" id="action_%2$s" class="%3$s"><i class="%4$s"></i> %5$s</a>', $url, $link, $class, $icon, $label);
 						}
 					}
 					?>

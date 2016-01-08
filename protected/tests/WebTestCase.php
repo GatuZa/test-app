@@ -42,7 +42,6 @@ class WebTestCase extends CWebTestCase
 	protected function login($name, $password)
 	{
 		$this->open('logout');
-		sleep(100);
 		$this->assertTextPresent('Авторизация');
 		$this->type('id=LoginForm_varName', $name);
 		$this->type('id=LoginForm_varPassword', $password);

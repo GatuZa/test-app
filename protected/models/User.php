@@ -53,8 +53,8 @@ class User extends BaseUser
 	{
 		return [
 			['varName, varPassword, intRoleID', 'required'],
-			['varName', 'length', 'max' => 100],
-			['varName', 'length', 'max' => 150],
+			['varName', 'length', 'max' => 20],
+			['varName', 'unique'],
 			['isActive', 'length', 'max' => 1],
 			['isActive', 'boolean'],
 			['varPassword', 'length', 'max' => 40],
