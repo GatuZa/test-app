@@ -11,5 +11,5 @@ To run the application you must:
 - create database "test_app" for tests and run "php protected/yiic migrate --connectionID=test_db"
 
 5) You can run tests:
-- run Selenium server: cd protected/vendor/netwing/selenium-server-standalone && java -jar -debug selenium-server-standalone-2.46.0.jar
-- run the tests: go to protected/tests and run ../../bin/phpunit --verbose functional
+- run Selenium server: cd protected/vendor/netwing/selenium-server-standalone && java -jar -debug selenium-server-standalone-2.46.0.jar -browserSessionReuse
+- run the tests: go to protected/tests and run ../../bin/phpunit functional

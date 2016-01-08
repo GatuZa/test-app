@@ -1,11 +1,19 @@
 <phpunit
 
 	bootstrap="bootstrap.php"
-	colors="false"
+	colors="true"
 	convertErrorsToExceptions="true"
 	convertNoticesToExceptions="true"
 	convertWarningsToExceptions="true"
-	stopOnFailure="false">
+	processIsolation="false"
+	stopOnError="false"
+	stopOnFailure="false"
+	stopOnIncomplete="false"
+	stopOnSkipped="false"
+	strict="false"
+	syntaxCheck="false"
+	debug="true"
+	verbose="true">
 
 	<php>
 		<ini name="display_errors" value="true"/>
