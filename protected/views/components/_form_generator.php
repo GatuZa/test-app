@@ -8,43 +8,33 @@
  * @var array $nestable
  * @var bool $readonly
  */
-$form = $this->beginWidget('CActiveForm', array(
+$form = $this->beginWidget('CActiveForm', [
 	'id' => $model->tableSchema->name . '-form',
-	'htmlOptions' => array(
+	'htmlOptions' => [
 		'class' => 'form-horizontal',
 		'enctype' => 'multipart/form-data'
-	),
-	'enableAjaxValidation' => false,
-));
+	],
+	'enableAjaxValidation' => false
+]);
 
-if (!empty($columns))
-{
-	$iterate = array();
-	foreach ($columns as $field)
-	{
-		if (is_array($field))
-		{
+if (!empty($columns)) {
+	$iterate = [];
+	foreach ($columns as $field) {
+		if (is_array($field)) {
 			$iterate[] = $field;
-		}
-		else
-		{
+		} else {
 			$iterate[$field] = $model->$field;
 		}
 	}
-}
-else
-{
+} else {
 	$iterate = iterator_to_array($model->getIterator());
 	ksort($iterate);
 }
 
 
-foreach ($iterate as $field => $value)
-{
-	if (!empty($value) && is_array($value))
-	{
-		if (array_key_exists('separator', $value))
-		{
+foreach ($iterate as $field => $value) {
+	if (!empty($value) && is_array($value)) {
+		if (array_key_exists('separator', $value)) {
 			printf('
 				<div style="position: relative;">
 					<div class="well well-sm row well-no-round">
@@ -52,55 +42,45 @@ foreach ($iterate as $field => $value)
 
 						<div style="position: absolute;right:0;top:3px;">%s</div>
 					</div>
-				</div>', $value['separator'], CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить', array(
+				</div>', $value['separator'], CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить', [
 				'class' => 'btn btn-primary'
-			)));
-		}
-		elseif (array_key_exists('widget', $value))
-		{
+			]));
+		} elseif (array_key_exists('widget', $value)) {
 			echo '<div class="col-md-offset-3 col-md-9">';
 			$this->widget($value['widget']['name'], $value['widget']['options']);
 			echo '</div>';
-		}
-		elseif (array_key_exists($field, $model->relations()))
-		{
-			$this->renderPartial('_form_iterator', array(
+		} elseif (array_key_exists($field, $model->relations())) {
+			$this->renderPartial('_form_iterator', [
 				'columns' => isset($columns) ? $columns : null,
 				'field' => $field,
 				'types' => isset($types) ? $types : null,
 				'form' => $form,
 				'model' => $model,
 				'readonly' => isset($readonly) ? $readonly : null,
-				'relations' => isset($relations) ? $relations : null,
-			));
+				'relations' => isset($relations) ? $relations : null
+			]);
 		}
-	}
-	else
-	{
-		$this->renderPartial('../components/_form_iterator', array(
+	} else {
+		$this->renderPartial('../components/_form_iterator', [
 			'columns' => isset($columns) ? $columns : null,
 			'field' => $field,
 			'types' => isset($types) ? $types : null,
 			'form' => $form,
 			'model' => $model,
 			'readonly' => isset($readonly) ? $readonly : null,
-			'relations' => isset($relations) ? $relations : null,
-		));
+			'relations' => isset($relations) ? $relations : null
+		]);
 	}
 }
 
-if (isset($nestable))
-{
-	foreach ($nestable as $key => $data)
-	{
+if (isset($nestable)) {
+	foreach ($nestable as $key => $data) {
 		$input['form'] = $form;
 		$input['model'] = $model;
 		$input['join'] = $data;
 
-		if (is_array($data))
-		{
+		if (is_array($data)) {
 			$input = array_merge($input, $data);
-
 			$input['join'] = $key;
 		}
 
@@ -112,9 +92,9 @@ if (isset($nestable))
 	<div class="form-group buttons">
 		<div class="col-md-12 text-right">
 			<?=
-			CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить', array(
+			CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить', [
 				'class' => 'btn btn-primary'
-			)); ?>
+			]); ?>
 		</div>
 	</div>
 
@@ -123,7 +103,7 @@ if (isset($nestable))
 		{
 			$('[data-trigger=openimage]').click(function ()
 			{
-				$.facebox({ image: $(this).attr('data-src') });
+				$.facebox({image: $(this).attr('data-src')});
 
 				return false;
 			});

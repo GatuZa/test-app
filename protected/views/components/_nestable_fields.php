@@ -20,24 +20,20 @@ $grid_iterator = 0;
 		<? foreach ($related as $rel): ?>
 			<div class="col-md-6">
 				<div class="well">
-					<?
-					foreach ($rel->getIterator() as $field => $value)
-					{
-						if ($field != $model->tableSchema->primaryKey)
-						{
-							$this->renderPartial('../layout/_form_iterator', array(
+					<? foreach ($rel->getIterator() as $field => $value) {
+						if ($field != $model->tableSchema->primaryKey) {
+							$this->renderPartial('../layout/_form_iterator', [
 								'columns' => isset($columns) ? $columns : null,
 								'field' => $field,
 								'form' => $form,
 								'model' => $rel,
 								'grid_type' => 'nestable',
 								'grid_iterator' => $grid_iterator,
-							));
+							]);
 
 						}
 					}
-					$grid_iterator++;
-					?>
+					$grid_iterator++; ?>
 				</div>
 			</div>
 		<?php

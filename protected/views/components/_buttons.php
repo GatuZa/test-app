@@ -10,33 +10,28 @@ if (isset($buttons) && !Yii::app()->request->isAjaxRequest):
 			<div class="col-md-12 text-right">
 				<div class="btn-group">
 					<?php
-					if (array_key_exists('custom', $buttons))
-					{
+					if (array_key_exists('custom', $buttons)) {
 						echo $buttons['custom'];
-					}
-					else
-					{
-						foreach ($buttons as $link)
-						{
+					} else {
+						foreach ($buttons as $link) {
 							$class = 'btn btn-flow-header btn-';
 							$icon = 'glyphicon glyphicon-';
 
-							switch ($link)
-							{
+							switch ($link) {
 								case 'create':
 									$class .= 'primary';
-									$label = 'Добавить';
+									$label = 'Add';
 									$icon .= 'plus';
 									break;
 								case 'back':
 									$class .= 'info';
-									$label = 'Назад';
+									$label = 'Back';
 									$icon .= 'arrow-left';
 									$link = '';
 									break;
 								default:
 									$class = 'default';
-									$label = 'Добавить';
+									$label = 'Add';
 									$icon .= 'plus';
 									break;
 							}

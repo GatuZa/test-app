@@ -1,5 +1,4 @@
 <?php
-//print_r($isAdmin === false); die;
 /**
  * @param $controller
  * @param $name
@@ -10,8 +9,7 @@
  */
 function add_menu($controller, $name, $isAdmin, $check = false)
 {
-	if (($check && $isAdmin) || !$check)
-	{
+	if (($check && $isAdmin) || !$check) {
 		return sprintf('
 			<li class="%s">
 				<a href="/%s/">%s</a>
@@ -47,11 +45,11 @@ function add_menu($controller, $name, $isAdmin, $check = false)
 			<ul class="nav navbar-nav pull-right">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="glyphicon glyphicon-user"></i>  <span class="caret"></span>
+						<i class="glyphicon glyphicon-user"></i> <span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
 						<li>
-							<a href="<?= Yii::app()->createUrl("user/edit", array("id" => Yii::app()->user->id)) ?>">
+							<a href="<?= Yii::app()->createUrl("user/edit", ["id" => Yii::app()->user->id]) ?>">
 								<i class="glyphicon glyphicon-edit"></i>
 								<?= Yii::app()->user->name ?>
 							</a>

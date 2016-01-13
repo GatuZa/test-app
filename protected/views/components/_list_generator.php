@@ -10,177 +10,149 @@
  * @var array $custom_action
  * @var array $filter
  */
-if (!isset($provider) && empty($provider))
-{
+if (!isset($provider) && empty($provider)) {
 	$provider = 'search';
 }
 
-if (!isset($columns) && empty($columns))
-{
-	$columns = array();
+if (!isset($columns) && empty($columns)) {
+	$columns = [];
 }
 
-if (!isset($extra_fields) && empty($extra_fields))
-{
-	$extra_fields = array();
+if (!isset($extra_fields) && empty($extra_fields)) {
+	$extra_fields = [];
 }
 
-if (!isset($actions) && empty($actions))
-{
+if (!isset($actions) && empty($actions)) {
 	$actions = '';
 
-	if (method_exists($model, 'getSortField'))
-	{
+	if (method_exists($model, 'getSortField')) {
 		$actions .= '{sort_up}{sort_down}';
 	}
 
 	$actions .= '{edit} {delete}';
 }
 
-if (!isset($custom_action) && empty($custom_action))
-{
-	$custom_action = array();
-}
-else if (strpos('{custom}', $actions) === false)
-{
+if (!isset($custom_action) && empty($custom_action)) {
+	$custom_action = [];
+} else if (strpos('{custom}', $actions) === false) {
 	$actions .= ' {custom}';
 }
 
-$config = array(
+$config = [
 	'id' => $model->tableSchema->name . '-list',
 	'dataProvider' => $model->$provider($provider ? $provider : 'search'),
 	'ajaxUpdate' => false,
 	'cssFile' => false,
 	'summaryText' => '',
-	'pager' => array(
+	'pager' => [
 		'header' => false,
 		'footer' => false,
-		'htmlOptions' => array('class' => 'pagination'),
-		'cssFile' => false,
-	),
+		'htmlOptions' => ['class' => 'pagination'],
+		'cssFile' => false
+	],
 	'itemsCssClass' => 'table table-striped table-bordered table-hover',
 	'filterCssClass' => 'table-filters-box'
-);
+];
 
-$config['columns'] = array();
+$config['columns'] = [];
 
 $fields = iterator_to_array($model->getIterator());
 $fields = array_merge($fields, array_fill_keys($extra_fields, null));
 $columns = array_merge($columns, $extra_fields);
 
-if ($columns)
-{
-	$iterate = array();
-	foreach ($columns as $field)
-	{
+if ($columns) {
+	$iterate = [];
+	foreach ($columns as $field) {
 		$iterate[$field] = $fields[$field];
 	}
-}
-else
-{
+} else {
 	$iterate = $fields;
 }
 
-
-foreach ($iterate as $field => $value)
-{
+foreach ($iterate as $field => $value) {
 	/**
 	 * Если указан массив $columns то выводим в грид только поля
 	 * которые описанны в этом массиве
 	 */
-	if (isset($columns) && !empty($columns) && !in_array($field, $columns))
-	{
+	if (isset($columns) && !empty($columns) && !in_array($field, $columns)) {
 		continue;
 	}
 
 	/**
 	 * Праймари ключ всегда в начале списка
 	 */
-	if ($field == $model->tableSchema->primaryKey)
-	{
-		array_unshift($config['columns'], array(
+	if ($field == $model->tableSchema->primaryKey) {
+		array_unshift($config['columns'], [
 			'name' => $field,
-			'htmlOptions' => array('class' => 'column_' . $field)
-		));
-	}
-	/**
+			'htmlOptions' => ['class' => 'column_' . $field]
+		]);
+	} /**
 	 * Если есть JOIN поля, то подключаем выводим используя magic method __toString
 	 */
-	elseif (isset($relations) && array_key_exists($field, $relations))
-	{
+	elseif (isset($relations) && array_key_exists($field, $relations)) {
 		$join = $relations[$field];
 
-		if (!is_array($join))
-		{
+		if (!is_array($join)) {
 			/**
 			 * @see $model->representingColumn()
 			 * @link http://php.net/manual/ru/language.oop5.magic.php#object.tostring
 			 */
 			$relation_name = $join;
 			$relation_value = '(string) $data->' . $join;
-		}
-		else
-		{
+		} else {
 			$relation_name = key($join);
 			$relation_value = '$data->' . $relation_name . '->' . current($join);
 		}
 
-		array_push($config['columns'], array(
+		array_push($config['columns'], [
 			'name' => $relation_name,
 			'type' => 'html',
 			'value' => $relation_value,
 			'header' => $model->getAttributeLabel($field),
-			'htmlOptions' => array('class' => 'column_' . $field)
-		));
-	}
-	else
-	{
+			'htmlOptions' => ['class' => 'column_' . $field]
+		]);
+	} else {
 		$validated = false;
 
 		/**
 		 * Преобразовываем поля в соответствия к валтидаторам
 		 */
-		foreach ($model->getValidators($field) as $validator)
-		{
+		foreach ($model->getValidators($field) as $validator) {
 			/**
 			 * Если поле описано как boolean - то рендерим как Да/Нет
 			 */
-			if ($validator instanceof CBooleanValidator)
-			{
-				array_push($config['columns'], array(
+			if ($validator instanceof CBooleanValidator) {
+				array_push($config['columns'], [
 					'name' => $field,
 					'header' => $model->getAttributeLabel($field),
 					'value' => '$data->' . $field . ' ? "<span data-value=\'".$data->' . $field . '."\' class=\'label label-warning\'>Да</span>" : "<span data-value=\'".$data->' . $field . '."\' class=\'label label-danger\'>Нет</span>"',
 					'type' => 'raw',
-					'htmlOptions' => array('class' => 'column_' . $field)
+					'htmlOptions' => ['class' => 'column_' . $field]
 
-				));
+				]);
 
 				$validated = true;
-			}
-			elseif ($validator instanceof CDateValidator)
-			{
-				array_push($config['columns'], array(
+			} elseif ($validator instanceof CDateValidator) {
+				array_push($config['columns'], [
 					'name' => $field,
 					'header' => $model->getAttributeLabel($field),
 					'type' => 'html',
-					'value' => 'Yii::app()->dateFormatter->format(\'' . $validator->format . '\', $data->' . $field .')',
-					'htmlOptions' => array('class' => 'column_' . $field)
-				));
+					'value' => 'Yii::app()->dateFormatter->format(\'' . $validator->format . '\', $data->' . $field . ')',
+					'htmlOptions' => ['class' => 'column_' . $field]
+				]);
 
 				$validated = true;
 			}
 		}
 
-		if (isset($decorate) && array_key_exists($field, $decorate))
-		{
-			array_push($config['columns'], array(
+		if (isset($decorate) && array_key_exists($field, $decorate)) {
+			array_push($config['columns'], [
 				'name' => $field,
 				'header' => $model->getAttributeLabel($field),
 				'type' => 'html',
-				'htmlOptions' => array('class' => 'column_' . $field),
-				'value' => sprintf('$data->%s', $decorate[$field]),
-			));
+				'htmlOptions' => ['class' => 'column_' . $field],
+				'value' => sprintf('$data->%s', $decorate[$field])
+			]);
 
 			$validated = true;
 		}
@@ -188,85 +160,79 @@ foreach ($iterate as $field => $value)
 		/**
 		 * Остальные поля выводим стандартно
 		 */
-		if ($validated === false)
-		{
-			array_push($config['columns'], array(
+		if ($validated === false) {
+			array_push($config['columns'], [
 				'name' => $field,
 				'type' => 'html',
 				'header' => $model->getAttributeLabel($field),
-				'htmlOptions' => array('class' => 'column_' . $field),
-			));
+				'htmlOptions' => ['class' => 'column_' . $field]
+			]);
 		}
 	}
 }
 
-if ($actions !== false)
-{
-	$config['columns'][] = array(
+if ($actions !== false) {
+	$config['columns'][] = [
 		'class' => 'CButtonColumn',
-		'htmlOptions' => array('nowrap' => 'nowrap', 'style' => 'width: 110px;text-align:center'),
+		'htmlOptions' => ['nowrap' => 'nowrap', 'style' => 'width: 110px;text-align:center'],
 		'template' => '<div class="btn-group">' . $actions . '</div>',
-		'buttons' => array(
-			'edit' => array(
-				'label' => CHtml::tag('span', array('class' => 'glyphicon glyphicon-pencil')),
+		'buttons' => [
+			'edit' => [
+				'label' => CHtml::tag('span', ['class' => 'glyphicon glyphicon-pencil']),
 				'imageUrl' => false,
 				'url' => 'Yii::app()->createUrl("' . Yii::app()->controller->id . '/edit", array("id" => $data->' . $model->tableSchema->primaryKey . '));',
-				'options' => array('class' => 'btn btn-success btn-xs edit', 'title' => 'Edit')
-			),
-			'delete' => array(
-				'label' => CHtml::tag('span', array('class' => 'glyphicon glyphicon-floppy-remove')),
+				'options' => ['class' => 'btn btn-success btn-xs edit', 'title' => 'Edit']
+			],
+			'delete' => [
+				'label' => CHtml::tag('span', ['class' => 'glyphicon glyphicon-floppy-remove']),
 				'imageUrl' => false,
 				'url' => 'Yii::app()->createUrl("' . Yii::app()->controller->id . '/delete", array("id" => $data->' . $model->tableSchema->primaryKey . '));',
-				'options' => array('class' => 'btn btn-danger btn-xs delete', 'title' => 'Delete'),
+				'options' => ['class' => 'btn btn-danger btn-xs delete', 'title' => 'Delete'],
 				'visible' => '!($data->' . $model->tableSchema->primaryKey . ' == Yii::app()->user->id && ' . $model->tableSchema->name . '== "user")'
-			),
+			],
 			'custom' => $custom_action
-		)
-	);
+		]
+	];
 }
 
-if (isset($search))
-{
+if (isset($search)) {
 	echo '<div class="row">';
 	$uri = parse_url($_SERVER['REQUEST_URI']);
 
-	$form = $this->beginWidget('CActiveForm', array(
+	$form = $this->beginWidget('CActiveForm', [
 		'id' => $model->tableSchema->name . '-search-form',
-		'htmlOptions' => array(
+		'htmlOptions' => [
 			'class' => 'form-vertical',
 
-		),
+		],
 		'action' => $uri['path'],
 		'method' => 'get',
 		'enableAjaxValidation' => false,
-	));
+	]);
 
 
-	foreach ($search as $field)
-	{
-		$input = array(
+	foreach ($search as $field) {
+		$input = [
 			'type' => 'text',
 			'form' => $form,
 			'model' => $model,
 			'field' => $field,
 			'isSearch' => true,
-			'style' => array(
+			'style' => [
 				'parent_class' => '',
 				'label_class' => 'control-label',
 				'group_class' => 'form-group col-md-6'
-			)
-		);
+			]
+		];
 
-		if (isset($searchRelations) && array_key_exists($field, $searchRelations))
-		{
+		if (isset($searchRelations) && array_key_exists($field, $searchRelations)) {
 			$input['type'] = 'dropdown';
 			$input['join'] = $searchRelations[$field];
 		}
 
 		$value = null;
 
-		if (isset($_GET[ucfirst($model->tableName())]) && isset($_GET[ucfirst($model->tableName())][$field]))
-		{
+		if (isset($_GET[ucfirst($model->tableName())]) && isset($_GET[ucfirst($model->tableName())][$field])) {
 			$value = $_GET[ucfirst($model->tableName())][$field];
 		}
 
@@ -277,13 +243,13 @@ if (isset($search))
 	?>
 	<div class="form-group buttons">
 		<div class="col-md-12 btn-group">
-			<?= CHtml::submitButton('Искать', array(
+			<?= CHtml::submitButton('Искать', [
 				'class' => 'btn btn-primary'
-			)); ?>
+			]); ?>
 
-			<?= CHtml::link('Сбросить', $uri['path'], array(
+			<?= CHtml::link('Сбросить', $uri['path'], [
 				'class' => 'btn btn-danger'
-			)); ?>
+			]); ?>
 		</div>
 	</div>
 	<?php
