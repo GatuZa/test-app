@@ -1,6 +1,7 @@
 <?php
 return [
-	'connectionString' => 'mysql:host=localhost;dbname=local2maker',
+	'class' => 'CDbConnection',
+	'connectionString' => 'mysql:host=localhost;dbname=local2maker_tests',
 	'emulatePrepare' => true,
 	'username' => 'root',
 	'password' => '',

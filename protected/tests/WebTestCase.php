@@ -4,7 +4,7 @@
  * Change the following URL based on your server configuration
  * Make sure the URL ends with a slash so that we can use relative URLs in test cases
  */
-define('TEST_BASE_URL', 'http://test-app.com/index-test.php/');
+define('TEST_BASE_URL', 'http://local2maker.com/index-test.php/');
 
 /**
  * The base class for functional test cases.
@@ -42,7 +42,7 @@ class WebTestCase extends CWebTestCase
 	protected function login($name, $password)
 	{
 		$this->open('logout');
-		$this->assertTextPresent('Авторизация');
+		$this->assertTextPresent('Authorization');
 		$this->type('id=LoginForm_varName', $name);
 		$this->type('id=LoginForm_varPassword', $password);
 		$this->clickAndWait("//input[@value='Logon']");

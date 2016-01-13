@@ -18,7 +18,7 @@ class AccessTest extends WebTestCase
 	/**
 	 * Test is ok when guest can't access home page.
 	 */
-	public function testGuestNotAccessHomeUsersPage()
+	public function testGuestNotAccessHomePage()
 	{
 		$this->open('/');
 		$this->assertTextNotPresent('Home');
@@ -27,7 +27,7 @@ class AccessTest extends WebTestCase
 	/**
 	 * Test is ok when guest can't access home page.
 	 */
-	public function testGuestNotAccessToUsersPage()
+	public function testGuestNotAccessUsersPage()
 	{
 		$this->open('user');
 		$this->assertTextNotPresent('Users');
@@ -36,7 +36,7 @@ class AccessTest extends WebTestCase
 	/**
 	 * Test is ok when guest can't access settings page.
 	 */
-	public function testGuestNotAccessToSettingsPage()
+	public function testGuestNotAccessSettingsPage()
 	{
 		$this->open('setting');
 		$this->assertTextNotPresent('Settings');
@@ -45,16 +45,19 @@ class AccessTest extends WebTestCase
 	/**
 	 * Test is ok when guest can't access admin profile page.
 	 */
-	public function testGuestNotAccessToProfilePage()
+	public function testGuestNotAccessProfilePage()
 	{
 		$this->open('/user/edit/' . $this->users['sample1']['intUserID']);
+		$this->assertTextNotPresent('Edit');
+
+		$this->open('/user/edit/' . $this->users['sample2']['intUserID']);
 		$this->assertTextNotPresent('Edit');
 	}
 
 	/**
 	 * Test is ok when manager can't access settings page
 	 */
-	public function testManagerNotAccessToSettingsPage()
+	public function testManagerNotAccessSettingsPage()
 	{
 		$this->login($this->users['sample2']['varName'], $this->passwordManager);
 		$this->open('/setting/');
@@ -64,7 +67,7 @@ class AccessTest extends WebTestCase
 	/**
 	 * Test is ok when manager can't access another user profile page
 	 */
-	public function testManagerNotAccessToProfileUser()
+	public function testManagerNotAccessProfileUser()
 	{
 		$this->login($this->users['sample2']['varName'], $this->passwordManager);
 		$this->open('/user/edit/' . $this->users['sample1']['intUserID']);

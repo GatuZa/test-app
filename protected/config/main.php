@@ -42,8 +42,5 @@ return [
 				]
 			]
 		]
-	],
-	'params' => [
-		'adminEmail' => 'webmaster@example.com'
 	]
 ];

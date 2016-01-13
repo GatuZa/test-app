@@ -5,14 +5,7 @@ return [
 	'preload' => ['log'],
 	'components' => [
 		'db' => require(dirname(__FILE__) . '/database.php'),
-		'test_db' => [
-			'class' => 'CDbConnection',
-			'connectionString' => 'mysql:host=localhost;dbname=test_app',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8'
-		],
+		'unit_tests' => require(dirname(__FILE__) . '/database-tests.php'),
 		'log' => [
 			'class' => 'CLogRouter',
 			'routes' => [
