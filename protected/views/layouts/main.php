@@ -41,13 +41,12 @@
 	<div class="view-container margin-top-25">
 		<section id="content" >
 			<?php
-				$pages = array(
+				$pages = [
 					'error',
 					'dashboard'
-				);
+				];
 
-				foreach (Yii::app()->user->getFlashes() as $key => $message)
-				{
+				foreach (Yii::app()->user->getFlashes() as $key => $message) {
 					printf('<div class="row"><div class="alert alert-%s alert-outside-page">%s</div><br></div>', $key, $message);
 				}
 			?>

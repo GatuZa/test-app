@@ -1,3 +1,9 @@
 .idea
 composer.phar
 vendor
+
+assets/
+!assets/.gitignore
+
+protected/runtime/
+!protected/runtime/.gitignore
